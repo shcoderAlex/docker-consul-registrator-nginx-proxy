@@ -5,14 +5,13 @@ services:
     container_name: consul
     restart: always
     ports:
-      - 8400:8400
-      - 8500:8500
       - 53:53/udp
     entrypoint:
       - /bin/start
       - -bootstrap
       - -server
       - -client 0.0.0.0
+      - -ui-dir /ui
 
   registrator:
     image: gliderlabs/registrator
@@ -30,10 +29,9 @@ services:
   proxy:
     image: shcoder/nginx-proxy-consul-template
     container_name: nginx_proxy
+    restart: always
     ports:
       - 80:80
-    volumes:
-      - ${PWD}/templates:/templates
     links:
       - consul
       - registrator
