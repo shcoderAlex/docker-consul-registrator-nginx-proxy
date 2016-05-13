@@ -5,6 +5,8 @@ services:
     container_name: consul
     restart: always
     ports:
+      - 8400:8400
+      - 8500:8500
       - 53:53/udp
     entrypoint:
       - /bin/start
