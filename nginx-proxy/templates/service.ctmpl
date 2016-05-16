@@ -1,7 +1,7 @@
 {{range services}}
   {{if in .Tags "entrypoint"}}
     {{range service .Name "any"}}
-      {{if eq .Port "80"}}
+      {{if eq .Port 80}}
         server {
             listen 80;
             server_name {{.Name}}.dev;
@@ -24,7 +24,7 @@
           gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
         }
       {{end}}
-      {{if eq .Port "443"}}
+      {{if eq .Port 443}}
         #Coming soon 
       {{end}}
     {{end}}
